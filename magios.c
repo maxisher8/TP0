@@ -5,9 +5,9 @@
 bool validacion_respuesta_usuario_bool(char respuesta){
     while (respuesta != 'S' || respuesta != 'N'){
         printf("respuesta incorrecta, vuelva a intentar: ");
-        scanf(" %c", respuesta);
+        scanf(" %c", &respuesta);
     }
-    if(respuesta = 'S'){
+    if(respuesta == 'S'){
         return true;
     }
     else{
@@ -26,15 +26,15 @@ int correccion_respuesta_2(bool respuesta_usuario_2, int puntaje){
 void validacion_respuesta_usuario(char respuesta){
     while (respuesta != 'A' || respuesta != 'B' || respuesta != 'J' || respuesta != 'S'){
         printf("respuesta incorrecta, vuelva a intentar: ");
-        scanf(" %c", respuesta);
+        scanf(" %c", &respuesta);
     }
 }
 /*Enviar un puntero del puntaje del usuario y dentro de correccion_respuesta sumarle o restarle los puntos*/
 int correcion_respuesta_usuario(int intentos, int MAX_INTENTOS, char respuesta){
     while(intentos < MAX_INTENTOS && respuesta != 'J'){
         printf("respuesta incorrecta, intente otra vez: ");
-        respuesta = scanf(" %c");
-        validacion_respuesta(respuesta);
+        scanf(" %c", &respuesta);
+        validacion_respuesta_usuario(respuesta);
         intentos = intentos + 1;
     }
     return intentos;
