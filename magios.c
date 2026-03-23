@@ -1,27 +1,7 @@
 #include  <stdio.h>
 #include  <stdbool.h>
 
-main(){
-    const int MAX_INTENTOS = 3;
-    int intentos_usuario = 0;
-    char respuesta_usuario = 'B';
-    int puntaje = 0;
-    bool respuesta_usuario_bool = true;
-    printf("--prueba de iniciación para ingresar a los Magios iniciada--");
-    printf("pregunta 1");
-    scanf(" %c", &respuesta_usuario);
-    validacion_respuesta_usuario(respuesta_usuario);
-    intentos_usuario = correcion_respuesta_usuario(intentos_usuario, MAX_INTENTOS, respuesta_usuario);
-    if(intentos_usuario < MAX_INTENTOS){
-        printf("pregunta 2");
-        scanf(" %c", &respuesta_usuario);
-        respuesta_usuario_bool = validacion_respuesta_usuario_bool(respuesta_usuario);
-        correccion_respuesta_2(respuesta_usuario_bool, puntaje);
-    }
-    else{
-        printf("-RECHAZADO-");
-    }
-}
+
 bool validacion_respuesta_usuario_bool(char respuesta){
     while (respuesta != 'S' || respuesta != 'N'){
         printf("respuesta incorrecta, vuelva a intentar: ");
@@ -58,4 +38,26 @@ int correcion_respuesta_usuario(int intentos, int MAX_INTENTOS, char respuesta){
         intentos = intentos + 1;
     }
     return intentos;
+}
+
+int main(){
+    const int MAX_INTENTOS = 3;
+    int intentos_usuario = 0;
+    char respuesta_usuario = 'B';
+    int puntaje = 0;
+    bool respuesta_usuario_bool = true;
+    printf("--prueba de iniciación para ingresar a los Magios iniciada--");
+    printf("pregunta 1");
+    scanf(" %c", &respuesta_usuario);
+    validacion_respuesta_usuario(respuesta_usuario);
+    intentos_usuario = correcion_respuesta_usuario(intentos_usuario, MAX_INTENTOS, respuesta_usuario);
+    if(intentos_usuario < MAX_INTENTOS){
+        printf("pregunta 2");
+        scanf(" %c", &respuesta_usuario);
+        respuesta_usuario_bool = validacion_respuesta_usuario_bool(respuesta_usuario);
+        correccion_respuesta_2(respuesta_usuario_bool, puntaje);
+    }
+    else{
+        printf("-RECHAZADO-");
+    }
 }
