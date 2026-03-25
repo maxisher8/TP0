@@ -14,12 +14,12 @@ bool validacion_respuesta_usuario_bool(char respuesta){
         return false;
     }
 }
-int correccion_respuesta_2(bool respuesta_usuario_2, int puntaje){
+int correccion_respuesta_2(bool respuesta_usuario_2){
     if(respuesta_usuario_2){
-        return puntaje + 50;
+        return 50;
     }
     else{
-        return puntaje - 300;
+        return -300;
     }
 }
 
@@ -30,14 +30,16 @@ void validacion_respuesta_usuario(char *respuesta){
     }
 }
 
-int correcion_respuesta_usuario(int intentos, int MAX_INTENTOS, char respuesta){
+int correcion_respuesta_usuario(int intentos, int MAX_INTENTOS, char respuesta, int *puntaje_pregunta_1){
     intentos = intentos + 1;
     while(intentos < MAX_INTENTOS && respuesta != 'J'){
+        *puntaje_pregunta_1 = *puntaje_pregunta_1 - 20;
         printf("respuesta incorrecta, intente otra vez: ");
         scanf(" %c", &respuesta);
         intentos = intentos + 1;
         validacion_respuesta_usuario(&respuesta);
     }
+    *puntaje_pregunta_1 = *puntaje_pregunta_1 + 100;
     return intentos;
 }
 
@@ -89,12 +91,12 @@ int puntaje_final = 0;
     printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
     scanf(" %c", &respuesta_usuario);
     validacion_respuesta_usuario(&respuesta_usuario);
-    intentos_usuario = correcion_respuesta_usuario(intentos_usuario, MAX_INTENTOS, respuesta_usuario);
+    intentos_usuario = correcion_respuesta_usuario(intentos_usuario, MAX_INTENTOS, respuesta_usuario, &puntaje_pregunta_1);
     if(intentos_usuario <= MAX_INTENTOS){
         printf("¿Promete mantener en secreto la existencia de los Magios? \n [S] Sí \n [N] No \n ");
         scanf(" %c", &respuesta_usuario);
         respuesta_usuario_bool = validacion_respuesta_usuario_bool(respuesta_usuario);
-        puntaje = correccion_respuesta_2(respuesta_usuario_bool, puntaje);
+        puntaje_pregunta_2 = correccion_respuesta_2(respuesta_usuario_bool, puntaje_pregunta_2);
         printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm)");
         scanf("%d/%d", &respuesta_edad_usuario_año, &respuesta_edad_usuario_mes);
         validacion_pregunta_3(&respuesta_edad_usuario_año, &respuesta_edad_usuario_mes);
