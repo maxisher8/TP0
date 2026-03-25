@@ -58,7 +58,9 @@ void calcular_edad(short int AÑO_ACTUAL, short int MES_ACTUAL, short int respue
 
 void validacion_pregunta_4(short int donas_a_regalar){
     while(donas_a_regalar < 0 || donas_a_regalar > 12){
-
+        printf("Respuesta invalida, ingrese un numero entre 0 y 12 \n);
+        printf("pregunta 4 \n");
+        scanf("%hd", &donas_a_regalar);
     }
 }
 
@@ -66,13 +68,16 @@ int main(){
     const int MAX_INTENTOS = 3;
     int intentos_usuario = 0;
     char respuesta_usuario = 'B';
-    int puntaje = 0;
     bool respuesta_usuario_bool = true;
     short int respuesta_edad_usuario_año = 0;
     short int respuesta_edad_usuario_mes = 0;
     short int donas_a_regalar = 0;
     const short int AÑO_ACTUAL = 2026;
     const short int MES_ACTUAL = 3;
+int puntaje_pregunta_1 = 0;
+int puntaje_pregunta_2 = 0;
+int puntaje_pregunta_3 = 0;
+int puntaje_pregunta_4 = 0;
     printf("--prueba de iniciación para ingresar a los Magios iniciada-- \n ¿Quién fundó realmente Springfield? \n");
     printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
     scanf(" %c", &respuesta_usuario);
