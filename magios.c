@@ -64,6 +64,12 @@ void validacion_pregunta_4(short int donas_a_regalar){
     }
 }
 
+int calcular_puntaje(){
+    int puntaje_total = 0;
+    puntaje_total = puntaje_1 + puntaje_2 + puntaje_3 + puntaje_4;
+    return puntaje_total;
+}
+
 int main(){
     const int MAX_INTENTOS = 3;
     int intentos_usuario = 0;
@@ -78,6 +84,7 @@ int puntaje_pregunta_1 = 0;
 int puntaje_pregunta_2 = 0;
 int puntaje_pregunta_3 = 0;
 int puntaje_pregunta_4 = 0;
+int puntaje_final = 0;
     printf("--prueba de iniciación para ingresar a los Magios iniciada-- \n ¿Quién fundó realmente Springfield? \n");
     printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
     scanf(" %c", &respuesta_usuario);
@@ -95,6 +102,7 @@ int puntaje_pregunta_4 = 0;
         printf("pregunta 4");
         scanf("%hd", &donas_a_regalar);
         validacion_pregunta_4(donas_a_regalar);
+        puntaje_final = calcular_puntaje(puntaje_pregunta_1, puntaje_pregunta_2, puntaje_pregunta_3, puntaje_pregunta_4);
     }
     else{
         printf("-RECHAZADO-");
