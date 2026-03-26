@@ -69,7 +69,9 @@ void validacion_pregunta_3(short int *respuesta_edad_usuario_año, short int *re
 int calcular_edad_pregunta_3(short int AÑO_ACTUAL, short int MES_ACTUAL, short int respuesta_edad_usuario_año, short int respuesta_edad_usuario_mes){
     short int edad = 0;
     edad = AÑO_ACTUAL - respuesta_edad_usuario_año;
-    if(MES_ACTUAL < respuesta_edad_usuario_mes){edad = edad - 1;}
+    if(MES_ACTUAL < respuesta_edad_usuario_mes){
+        edad = edad - 1;
+    }
     return edad;
 }
 //PRE: La funcion debe recibir la edad del usuario.
