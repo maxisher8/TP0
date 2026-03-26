@@ -7,7 +7,7 @@ const short int MES_ACTUAL = 3;
 
 //PRE: La funcion debe recibir como respuesta un char.
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'A', 'B', 'J' o 'S'.
-void validacion_respuesta_usuario(char *respuesta){
+void validacion_pregunta_1(char *respuesta){
     while (*respuesta != 'A' && *respuesta != 'B' && *respuesta != 'J' && *respuesta != 'S'){
         printf("respuesta Invalida, vuelva a intentar: ");
         scanf(" %c", respuesta);
@@ -15,13 +15,13 @@ void validacion_respuesta_usuario(char *respuesta){
 }
 //PRE: La funcion debe recibir una respuesta valida a las opciones correspondientes.
 //POS: La funcion entra en un ciclo que repregunta al usuario hasta que ingrese la respuesta correcta o se acaben los intentos, y suma o resta el puntaje.
-int correcion_respuesta_usuario(int intentos, int MAX_INTENTOS, char respuesta, int *puntaje_pregunta_1){
+int correccion_pregunta_1(int intentos, int MAX_INTENTOS, char respuesta, int *puntaje_pregunta_1){
     intentos = intentos + 1;
     while(intentos < MAX_INTENTOS && respuesta != 'J'){
         *puntaje_pregunta_1 = *puntaje_pregunta_1 - 20;
         printf("respuesta incorrecta, intente otra vez: ");
         scanf(" %c", &respuesta);
-        validacion_respuesta_usuario(&respuesta);
+        validacion_pregunta_1(&respuesta);
         if(respuesta != 'J'){
             intentos = intentos + 1;
         }
@@ -33,7 +33,7 @@ int correcion_respuesta_usuario(int intentos, int MAX_INTENTOS, char respuesta, 
 }
 //PRE: La funcion debe recibir como respuesta un char.
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'S' o 'N', y devuelve un booleano dependiendo de la respuesta.
-bool validacion_respuesta_usuario_bool(char respuesta){
+bool validacion_pregunta_2(char respuesta){
     while (respuesta != 'S' && respuesta != 'N'){
         printf("respuesta Invalida, vuelva a intentar: ");
         scanf(" %c", &respuesta);
@@ -47,7 +47,7 @@ bool validacion_respuesta_usuario_bool(char respuesta){
 }
 //PRE: La funcion debe recibir un booleano.
 //POS: La funcion recibe un booleano y devuelve un puntaje dependiendo de la respuesta.
-int correccion_respuesta_2(bool respuesta_usuario_2){
+int correccion_pregunta_2(bool respuesta_usuario_2){
     if(respuesta_usuario_2){
         return 50;
     }
@@ -66,7 +66,7 @@ void validacion_pregunta_3(short int *respuesta_edad_usuario_año, short int *re
 }
 //PRE: La funcion debe recibir la fecha de nacimiento del usuario y la fecha actual.
 //POS: La funcion recibe la fecha de nacimiento del usuario y la fecha actual, y devuelve la edad del usuario.
-int calcular_edad(short int AÑO_ACTUAL, short int MES_ACTUAL, short int respuesta_edad_usuario_año, short int respuesta_edad_usuario_mes){
+int calcular_edad_pregunta_3(short int AÑO_ACTUAL, short int MES_ACTUAL, short int respuesta_edad_usuario_año, short int respuesta_edad_usuario_mes){
     short int edad = 0;
     edad = AÑO_ACTUAL - respuesta_edad_usuario_año;
     if(MES_ACTUAL < respuesta_edad_usuario_mes){edad = edad - 1;}
@@ -114,7 +114,7 @@ int calcular_puntaje_pregunta_4(short int donas_a_regalar)
 }
 //PRE: La funcion debe recibir los puntajes de las 4 preguntas.
 //POS: La funcion suma los puntajes de las 4 preguntas y devuelve el puntaje total.
-int calcular_puntaje(int puntaje_1, int puntaje_2, int puntaje_3, int puntaje_4){
+int calcular_puntaje_final(int puntaje_1, int puntaje_2, int puntaje_3, int puntaje_4){
     int puntaje_total = 0;
     puntaje_total = puntaje_1 + puntaje_2 + puntaje_3 + puntaje_4;
     return puntaje_total;
@@ -155,24 +155,24 @@ int main(){
     printf("--prueba de iniciación para ingresar a los Magios iniciada-- \n ¿Quién fundó realmente Springfield? \n");
     printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
     scanf(" %c", &respuesta_usuario);
-    validacion_respuesta_usuario(&respuesta_usuario);
-    intentos_usuario = correcion_respuesta_usuario(intentos_usuario, MAX_INTENTOS, respuesta_usuario, &puntaje_pregunta_1);
+    validacion_pregunta_1(&respuesta_usuario);
+    intentos_usuario = correccion_pregunta_1(intentos_usuario, MAX_INTENTOS, respuesta_usuario, &puntaje_pregunta_1);
     if(intentos_usuario < MAX_INTENTOS){
         printf("¿Promete mantener en secreto la existencia de los Magios? \n [S] Sí \n [N] No \n ");
         scanf(" %c", &respuesta_usuario);
-        respuesta_usuario_bool = validacion_respuesta_usuario_bool(respuesta_usuario);
-        puntaje_pregunta_2 = correccion_respuesta_2(respuesta_usuario_bool);
+        respuesta_usuario_bool = validacion_pregunta_2(respuesta_usuario);
+        puntaje_pregunta_2 = correccion_pregunta_2(respuesta_usuario_bool);
         printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm)");
         scanf("%hd/%hd", &respuesta_edad_usuario_año, &respuesta_edad_usuario_mes);
         validacion_pregunta_3(&respuesta_edad_usuario_año, &respuesta_edad_usuario_mes);
-        edad_usuario = calcular_edad(AÑO_ACTUAL, MES_ACTUAL, respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
+        edad_usuario = calcular_edad_pregunta_3(AÑO_ACTUAL, MES_ACTUAL, respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
         if(edad_usuario >= 18){
             puntaje_pregunta_3 = calcular_puntaje_pregunta_3(edad_usuario);
             printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno?");
             scanf("%hd", &donas_a_regalar);
             donas_a_regalar = validacion_pregunta_4(donas_a_regalar);
             puntaje_pregunta_4 = calcular_puntaje_pregunta_4(donas_a_regalar);
-            puntaje_final = calcular_puntaje(puntaje_pregunta_1, puntaje_pregunta_2, puntaje_pregunta_3, puntaje_pregunta_4);
+            puntaje_final = calcular_puntaje_final(puntaje_pregunta_1, puntaje_pregunta_2, puntaje_pregunta_3, puntaje_pregunta_4);
             calcular_resultado_final(puntaje_final);
         }
         else{
