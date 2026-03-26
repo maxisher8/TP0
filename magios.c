@@ -89,9 +89,7 @@ int calcular_puntaje_pregunta_edad(int edad_usuario){
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese un numero entre 0 y 12, y devuelve el numero de donas a regalar.
 short int validacion_pregunta_donas(short int donas_a_regalar){
     while(donas_a_regalar < 0 || donas_a_regalar > 12){
-        printf("Respuesta invalida, ingrese un numero entre 0 y 12 \n");
-        printf("pregunta 4 \n");
-        scanf("%hd", &donas_a_regalar);
+        repreguntar_pregunta_donas(&donas_a_regalar);
     }
     return donas_a_regalar;
 }
@@ -176,6 +174,12 @@ void repreguntar_pregunta_edad(short int *respuesta_edad_usuario_año, short int
     printf("La fecha esta fuera de rango, intente de nuevo: ");
     printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm) \n");
     scanf("%hd/%hd", respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
+}
+
+void repreguntar_pregunta_donas(short int *donas_a_regalar){
+    printf("Respuesta invalida, ingrese un numero entre 0 y 12 \n");
+    printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno? \n");
+    scanf("%hd", donas_a_regalar);
 }
 
 int main(){
