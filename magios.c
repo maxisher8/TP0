@@ -58,7 +58,7 @@ int correccion_pregunta_2(bool respuesta_usuario_2){
 //PRE: La funcion debe recibir como respuesta un año y un mes en formato yyyy/mm.
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese una fecha que este entre 1926/3 y 2026/3, y que el mes este entre 1 y 12.
 void validacion_pregunta_3(short int *respuesta_edad_usuario_año, short int *respuesta_edad_usuario_mes){
-    while(*respuesta_edad_usuario_año > 2026 || *respuesta_edad_usuario_año < 1926 || *respuesta_edad_usuario_mes < 1 || *respuesta_edad_usuario_mes > 12 || (*respuesta_edad_usuario_año == 1926 && *respuesta_edad_usuario_mes < 3) || (*respuesta_edad_usuario_año == 2026 && *respuesta_edad_usuario_mes > 3)){     
+    while((*respuesta_edad_usuario_año > 2026) || (*respuesta_edad_usuario_año < 1926) || (*respuesta_edad_usuario_mes < 1) || (*respuesta_edad_usuario_mes > 12) || (*respuesta_edad_usuario_año == 1926 && *respuesta_edad_usuario_mes < 3) || (*respuesta_edad_usuario_año == 2026 && *respuesta_edad_usuario_mes > 3)){     
         printf("La fecha esta fuera de rango, intente de nuevo: ");
         printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm) \n");
         scanf("%hd/%hd", respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
