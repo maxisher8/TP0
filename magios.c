@@ -15,8 +15,7 @@ const char NO = 'N';
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'A', 'B', 'J' o 'S'.
 void validacion_pregunta_fundador(char *respuesta){
     while (*respuesta != ALIENS && *respuesta != SR_BURNS && *respuesta != JEBEDIAH && *respuesta != MAGIOS){
-        printf("respuesta Invalida, vuelva a intentar: ");
-        scanf(" %c", respuesta);
+        repreguntar_pregunta_invalida(respuesta);
     }
 }
 //PRE: La funcion debe recibir una respuesta valida a las opciones correspondientes.
@@ -41,8 +40,7 @@ int correccion_pregunta_fundador(int intentos, int MAX_INTENTOS, char respuesta,
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'S' o 'N', y devuelve un booleano dependiendo de la respuesta.
 bool validacion_pregunta_secreto(char respuesta){
     while (respuesta != SI && respuesta != NO){
-        printf("respuesta Invalida, vuelva a intentar: ");
-        scanf(" %c", &respuesta);
+       repreguntar_pregunta_invalida(respuesta); 
     }
     if(respuesta == SI){
         return true;
@@ -165,6 +163,11 @@ void realizar_pregunta_edad(short int *respuesta_edad_usuario_año, short int *r
 void realizar_pregunta_donas(short int *donas_a_regalar){
     printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno?");
     scanf("%hd", donas_a_regalar);
+}
+
+void repreguntar_pregunta_invalida(char *respuesta){
+    printf("respuesta Invalida, vuelva a intentar: ");
+    scanf(" %c", respuesta);
 }
 
 int main(){
