@@ -4,6 +4,12 @@
 const int MAX_INTENTOS = 3;
 const short int AÑO_ACTUAL = 2026;
 const short int MES_ACTUAL = 3;
+const char SR_BURN = 'B';
+const char ALIENS = 'A';
+const char JEBEDIAH = 'J';
+const char MAGIOS = 'M';
+const char SI = 'S';
+const char NO = 'N';
 
 //PRE: La funcion debe recibir como respuesta un char.
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'A', 'B', 'J' o 'S'.
