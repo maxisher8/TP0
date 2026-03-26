@@ -14,7 +14,7 @@ const char NO = 'N';
 //PRE: La funcion debe recibir como respuesta un char.
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'A', 'B', 'J' o 'S'.
 void validacion_pregunta_fundador(char *respuesta){
-    while (*respuesta != 'A' && *respuesta != 'B' && *respuesta != 'J' && *respuesta != 'S'){
+    while (*respuesta != ALIENS && *respuesta != SR_BURNS && *respuesta != JEBEDIAH && *respuesta != MAGIOS){
         printf("respuesta Invalida, vuelva a intentar: ");
         scanf(" %c", respuesta);
     }
@@ -23,16 +23,16 @@ void validacion_pregunta_fundador(char *respuesta){
 //POS: La funcion entra en un ciclo que repregunta al usuario hasta que ingrese la respuesta correcta o se acaben los intentos, y suma o resta el puntaje.
 int correccion_pregunta_fundador(int intentos, int MAX_INTENTOS, char respuesta, int *puntaje_pregunta_1){
     intentos = intentos + 1;
-    while(intentos < MAX_INTENTOS && respuesta != 'J'){
+    while(intentos < MAX_INTENTOS && respuesta != JEBEDIAH){
         *puntaje_pregunta_1 = *puntaje_pregunta_1 - 20;
         printf("respuesta incorrecta, intente otra vez: ");
         scanf(" %c", &respuesta);
         validacion_pregunta_fundador(&respuesta);
-        if(respuesta != 'J'){
+        if(respuesta != JEBEDIAH){
             intentos = intentos + 1;
         }
     }
-    if(respuesta == 'J'){
+    if(respuesta == JEBEDIAH){
         *puntaje_pregunta_1 = *puntaje_pregunta_1 + 100;
     }
     return intentos;
@@ -40,11 +40,11 @@ int correccion_pregunta_fundador(int intentos, int MAX_INTENTOS, char respuesta,
 //PRE: La funcion debe recibir como respuesta un char.
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'S' o 'N', y devuelve un booleano dependiendo de la respuesta.
 bool validacion_pregunta_secreto(char respuesta){
-    while (respuesta != 'S' && respuesta != 'N'){
+    while (respuesta != SI && respuesta != NO){
         printf("respuesta Invalida, vuelva a intentar: ");
         scanf(" %c", &respuesta);
     }
-    if(respuesta == 'S'){
+    if(respuesta == SI){
         return true;
     }
     else{
