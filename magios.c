@@ -147,6 +147,26 @@ void calcular_resultado_final(int puntaje_final){
     }
 }
 
+void realizar_pregunta_fundador(char *respuesta_usuario){
+    printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
+    scanf(" %c", respuesta_usuario);
+}
+
+void realizar_pregunta_secreto(char *respuesta_usuario){
+    printf("¿Promete mantener en secreto la existencia de los Magios? \n [S] Sí \n [N] No \n ");
+    scanf(" %c", respuesta_usuario);
+}
+
+void realizar_pregunta_edad(short int *respuesta_edad_usuario_año, short int *respuesta_edad_usuario_mes){
+    printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm)");
+    scanf("%hd/%hd", respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
+}
+
+void realizar_pregunta_donas(short int *donas_a_regalar){
+    printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno?");
+    scanf("%hd", donas_a_regalar);
+}
+
 int main(){
     int edad_usuario = 0;
     int intentos_usuario = 0;
@@ -161,23 +181,19 @@ int main(){
     int puntaje_pregunta_4 = 0;
     int puntaje_final = 0;
     printf("--prueba de iniciación para ingresar a los Magios iniciada-- \n ¿Quién fundó realmente Springfield? \n");
-    printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
-    scanf(" %c", &respuesta_usuario);
+    realizar_pregunta_fundador(&respuesta_usuario);
     validacion_pregunta_fundador(&respuesta_usuario);
     intentos_usuario = correccion_pregunta_fundador(intentos_usuario, MAX_INTENTOS, respuesta_usuario, &puntaje_pregunta_1);
     if(intentos_usuario < MAX_INTENTOS){
-        printf("¿Promete mantener en secreto la existencia de los Magios? \n [S] Sí \n [N] No \n ");
-        scanf(" %c", &respuesta_usuario);
+        realizar_pregunta_secreto(&respuesta_usuario);
         respuesta_usuario_bool = validacion_pregunta_secreto(respuesta_usuario);
         puntaje_pregunta_2 = correccion_pregunta_secreto(respuesta_usuario_bool);
-        printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm)");
-        scanf("%hd/%hd", &respuesta_edad_usuario_año, &respuesta_edad_usuario_mes);
+        realizar_pregunta_edad(&respuesta_edad_usuario_año, &respuesta_edad_usuario_mes);
         validacion_pregunta_edad(&respuesta_edad_usuario_año, &respuesta_edad_usuario_mes);
         edad_usuario = calcular_edad(AÑO_ACTUAL, MES_ACTUAL, respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
         if(edad_usuario >= 18){
             puntaje_pregunta_3 = calcular_puntaje_pregunta_edad(edad_usuario);
-            printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno?");
-            scanf("%hd", &donas_a_regalar);
+            realizar_pregunta_donas(&donas_a_regalar);
             donas_a_regalar = validacion_pregunta_donas(donas_a_regalar);
             puntaje_pregunta_4 = calcular_puntaje_pregunta_donas(donas_a_regalar);
             puntaje_final = calcular_puntaje_final(puntaje_pregunta_1, puntaje_pregunta_2, puntaje_pregunta_3, puntaje_pregunta_4);
