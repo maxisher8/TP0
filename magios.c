@@ -24,8 +24,7 @@ int correccion_pregunta_fundador(int intentos, int MAX_INTENTOS, char respuesta,
     intentos = intentos + 1;
     while(intentos < MAX_INTENTOS && respuesta != JEBEDIAH){
         *puntaje_pregunta_1 = *puntaje_pregunta_1 - 20;
-        printf("respuesta incorrecta, intente otra vez: ");
-        scanf(" %c", &respuesta);
+        repreguntar_pregunta_incorrecta(&respuesta);
         validacion_pregunta_fundador(&respuesta);
         if(respuesta != JEBEDIAH){
             intentos = intentos + 1;
@@ -165,6 +164,11 @@ void realizar_pregunta_donas(short int *donas_a_regalar){
 
 void repreguntar_pregunta_invalida(char *respuesta){
     printf("respuesta Invalida, vuelva a intentar: ");
+    scanf(" %c", respuesta);
+}
+
+void repreguntar_pregunta_incorrecta(char *respuesta){
+    printf("respuesta incorrecta, intente otra vez: ");
     scanf(" %c", respuesta);
 }
 
