@@ -4,12 +4,59 @@
 const int MAX_INTENTOS = 3;
 const short int AÑO_ACTUAL = 2026;
 const short int MES_ACTUAL = 3;
-const char SR_BURN = 'B';
+const char SR_BURNS = 'B';
 const char ALIENS = 'A';
 const char JEBEDIAH = 'J';
-const char MAGIOS = 'M';
+const char MAGIOS = 'S';
 const char SI = 'S';
 const char NO = 'N';
+
+
+
+
+
+void realizar_pregunta_fundador(char *respuesta_usuario){
+    printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
+    scanf(" %c", respuesta_usuario);
+}
+
+void realizar_pregunta_secreto(char *respuesta_usuario){
+    printf("¿Promete mantener en secreto la existencia de los Magios? \n [S] Sí \n [N] No \n ");
+    scanf(" %c", respuesta_usuario);
+}
+
+void realizar_pregunta_edad(short int *respuesta_edad_usuario_año, short int *respuesta_edad_usuario_mes){
+    printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm)");
+    scanf("%hd/%hd", respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
+}
+
+void realizar_pregunta_donas(short int *donas_a_regalar){
+    printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno?");
+    scanf("%hd", donas_a_regalar);
+}
+
+void repreguntar_pregunta_invalida(char *respuesta){
+    printf("respuesta Invalida, vuelva a intentar: ");
+    scanf(" %c", respuesta);
+}
+
+void repreguntar_pregunta_incorrecta(char *respuesta){
+    printf("respuesta incorrecta, intente otra vez: ");
+    scanf(" %c", respuesta);
+}
+
+void repreguntar_pregunta_edad(short int *respuesta_edad_usuario_año, short int *respuesta_edad_usuario_mes){
+    printf("La fecha esta fuera de rango, intente de nuevo: ");
+    printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm) \n");
+    scanf("%hd/%hd", respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
+}
+
+void repreguntar_pregunta_donas(short int *donas_a_regalar){
+    printf("Respuesta invalida, ingrese un numero entre 0 y 12 \n");
+    printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno? \n");
+    scanf("%hd", donas_a_regalar);
+}
+
 
 //PRE: La funcion debe recibir como respuesta un char.
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'A', 'B', 'J' o 'S'.
@@ -39,7 +86,7 @@ int correccion_pregunta_fundador(int intentos, int MAX_INTENTOS, char respuesta,
 //POS: La funcion entra en un ciclo infinito hasta que el usuario ingrese 'S' o 'N', y devuelve un booleano dependiendo de la respuesta.
 bool validacion_pregunta_secreto(char respuesta){
     while (respuesta != SI && respuesta != NO){
-       repreguntar_pregunta_invalida(respuesta); 
+       repreguntar_pregunta_invalida( &respuesta); 
     }
     if(respuesta == SI){
         return true;
@@ -140,47 +187,6 @@ void calcular_resultado_final(int puntaje_final){
     }
 }
 
-void realizar_pregunta_fundador(char *respuesta_usuario){
-    printf(" [J] Jebediah Springfield \n [A] Los aliens \n [S] Los Magios \n [B] Sr. Burns \n");
-    scanf(" %c", respuesta_usuario);
-}
-
-void realizar_pregunta_secreto(char *respuesta_usuario){
-    printf("¿Promete mantener en secreto la existencia de los Magios? \n [S] Sí \n [N] No \n ");
-    scanf(" %c", respuesta_usuario);
-}
-
-void realizar_pregunta_edad(short int *respuesta_edad_usuario_año, short int *respuesta_edad_usuario_mes){
-    printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm)");
-    scanf("%hd/%hd", respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
-}
-
-void realizar_pregunta_donas(short int *donas_a_regalar){
-    printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno?");
-    scanf("%hd", donas_a_regalar);
-}
-
-void repreguntar_pregunta_invalida(char *respuesta){
-    printf("respuesta Invalida, vuelva a intentar: ");
-    scanf(" %c", respuesta);
-}
-
-void repreguntar_pregunta_incorrecta(char *respuesta){
-    printf("respuesta incorrecta, intente otra vez: ");
-    scanf(" %c", respuesta);
-}
-
-void repreguntar_pregunta_edad(short int *respuesta_edad_usuario_año, short int *respuesta_edad_usuario_mes){
-    printf("La fecha esta fuera de rango, intente de nuevo: ");
-    printf("¿Cuál es su fecha de nacimiento? (formato: yyyy/mm) \n");
-    scanf("%hd/%hd", respuesta_edad_usuario_año, respuesta_edad_usuario_mes);
-}
-
-void repreguntar_pregunta_donas(short int *donas_a_regalar){
-    printf("Respuesta invalida, ingrese un numero entre 0 y 12 \n");
-    printf("¿Cuántas donas estaría dispuesto a sacrificar para el Número Uno? \n");
-    scanf("%hd", donas_a_regalar);
-}
 
 int main(){
     int edad_usuario = 0;
